@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.tektutor</groupId>
-	<artifactId>book-catalogue-rest</artifactId>
+	<artifactId>tektutor-oladriver-microservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>book-catalogue-rest</name>
+	<name>OlaDriverMicroService</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -20,10 +20,19 @@
 	</properties>
 
 	<dependencies>
+	    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -35,7 +44,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 	<dependencyManagement>

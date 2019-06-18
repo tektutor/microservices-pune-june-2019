@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.tektutor</groupId>
-	<artifactId>book-catalogue-rest</artifactId>
+	<artifactId>eureka-registry-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>book-catalogue-rest</name>
+	<name>eureka-registry-server</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -25,6 +25,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
@@ -35,7 +40,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 	<dependencyManagement>
