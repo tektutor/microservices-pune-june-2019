@@ -25,6 +25,8 @@ public class KafkaSubscriberConfig {
         props.put( ConsumerConfig.GROUP_ID_CONFIG, "UPDATE_SHIPPING_ADDRESS" );
         props.put( ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, IntegerDeserializer.class);
         props.put( ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+	props.put ( JsonDeserializer.TRUSTED_PACKAGES,  "org.tektutor" );
+
         
         return new DefaultKafkaConsumerFactory<>(props);
         
