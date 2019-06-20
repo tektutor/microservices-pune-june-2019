@@ -23,7 +23,7 @@ public class CustomerRestController {
 	private CustomerRepository customerRepository;
 	
 	@Autowired
-	private KafkaTemplate<String,Customer> kakfaTemplate;
+	private KafkaTemplate<Integer,Object> kakfaTemplate;
 	
 	private static final String TOPIC = "CUSTOMER_ADDRESS_UPDATE";
 	
@@ -42,7 +42,7 @@ public class CustomerRestController {
 		return  customerRepository.findAll();
 	}
 	
-	@PutMapping("/update-address")
+	@GetMapping("/update-address")
 	public String updateCustomerAddress() {
 				
 			Customer customer = new Customer ( 1, "Hari", "Bengaluru" );
