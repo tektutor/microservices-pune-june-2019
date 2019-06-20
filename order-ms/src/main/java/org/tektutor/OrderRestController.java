@@ -20,8 +20,8 @@ public class OrderRestController {
 	@PostConstruct
 	public void initCustomerRepo() {
 		
-		orderRepository.saveAll ( Stream.of( new Order( 1, 1, "Jegan", "Pune" ),
-												new Order( 2, 1,  "Hari", "Chennai")
+		orderRepository.saveAll ( Stream.of( new Order( 1, 1, "Markers", "Pune" ),
+												new Order( 2, 1,  "Mobile", "Chennai")
 		).collect( Collectors.toList()));
 
 	}

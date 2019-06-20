@@ -5,7 +5,7 @@ import org.springframework.data.couchbase.core.query.ViewIndexed;
 import org.springframework.data.couchbase.repository.CouchbaseRepository;
 
 @N1qlPrimaryIndexed
-@ViewIndexed(designDoc="Order", viewName="all")
+@ViewIndexed(designDoc="order")
 public interface OrderRepository extends CouchbaseRepository<Order, Integer> {
 
 }
