@@ -10,12 +10,19 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 
 @RestController
 public class OrderRestController {
 
 	@Autowired
 	private OrderRepository orderRepository;
+
+	@Autowired
+	private KafkaTemplate<Integer,Object> kakfaTemplate;
+	
+	private static final String TOPIC = "CUSTOMER_ADDRESS_UPDATE";
 	
 	@PostConstruct
 	public void initCustomerRepo() {
@@ -31,4 +38,12 @@ public class OrderRestController {
 		return  orderRepository.findAll();
 	}
 	
+	
+	@KafkaListener(topics = TOPIC, groupId = "UPDATE_SHIPPING_ADDRESS")
+	public String listen(String message) {
+		
+	    System.out.println("Received Customer address update message ==> " + message);
+	    return message;
+	    
+	}
 }

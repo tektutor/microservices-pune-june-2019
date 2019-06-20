@@ -6,9 +6,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,6 +21,11 @@ public class CustomerRestController {
 
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private KafkaTemplate<String,Customer> kakfaTemplate;
+	
+	private static final String TOPIC = "CUSTOMER_ADDRESS_UPDATE";
 	
 	@PostConstruct
 	public void initCustomerRepo() {
@@ -32,11 +42,14 @@ public class CustomerRestController {
 		return  customerRepository.findAll();
 	}
 	
-	@PutMapping("/update-address/{id}")
-	public void updateCustomerAddress(@PathParam("id") int customerId) {
-
-
-
+	@PutMapping("/update-address")
+	public String updateCustomerAddress() {
+				
+			Customer customer = new Customer ( 1, "Hari", "Bengaluru" );
+		
+			kakfaTemplate.send( TOPIC,  customer );
+		
+			return "Customer updated successfully !";
 	}
 	
 }
