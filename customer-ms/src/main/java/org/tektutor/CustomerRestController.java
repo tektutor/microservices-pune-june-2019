@@ -25,10 +25,18 @@ public class CustomerRestController {
 		).collect( Collectors.toList()));
 
 	}
+
 	
 	@GetMapping("/customers")
 	public Iterable<Customer> getAllCustomers( ) {
 		return  customerRepository.findAll();
+	}
+	
+	@PutMapping("/update-address/{id}")
+	public void updateCustomerAddress(@PathParam("id") int customerId) {
+
+
+
 	}
 	
 }
