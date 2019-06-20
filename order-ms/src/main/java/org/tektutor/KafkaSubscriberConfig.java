@@ -21,7 +21,7 @@ public class KafkaSubscriberConfig {
     	
         HashMap<String, Object> props = new HashMap<>();
         
-        props.put( ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.17.0.2:9092" );
+        props.put( ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "3.84.31.181:9092" );
         props.put( ConsumerConfig.GROUP_ID_CONFIG, "UPDATE_SHIPPING_ADDRESS" );
         props.put( ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, IntegerDeserializer.class);
         props.put( ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
