@@ -12,23 +12,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CustomerRestController {
+public class OrderRestController {
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private OrderRepository orderRepository;
 	
 	@PostConstruct
 	public void initCustomerRepo() {
 		
-		customerRepository.saveAll ( Stream.of( new Customer( 1, "Jegan", "Pune" ),
-												new Customer( 2, "Hari", "Chennai")
+		orderRepository.saveAll ( Stream.of( new Order( 1, 1, "Jegan", "Pune" ),
+												new Order( 2, 1,  "Hari", "Chennai")
 		).collect( Collectors.toList()));
 
 	}
 	
-	@GetMapping("/customers")
-	public Iterable<Customer> getAllCustomers( ) {
-		return  customerRepository.findAll();
+	@GetMapping("/orders")
+	public Iterable<Order> getAllOrders( ) {
+		return  orderRepository.findAll();
 	}
 	
 }

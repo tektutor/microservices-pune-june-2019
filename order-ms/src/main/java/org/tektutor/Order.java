@@ -14,9 +14,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Document
-public class Customer {
+public class Order {
 	@Id
 	private int id;
+
+	@Field
+	private int customerId;
 	
 	@Field
 	private String name;
@@ -24,8 +27,9 @@ public class Customer {
 	@Field
 	private String shippingAddress;
 
-	public Customer(int id, String name, String shippingAddress) {
+	public Order ( int id, int customerId, String name, String shippingAddress ) {
 		this.id = id;
+		this.customerId = customerId;
 		this.name = name;
 		this.shippingAddress = shippingAddress;
 	}	

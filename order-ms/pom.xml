@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.tektutor</groupId>
-	<artifactId>tektutor-customer-ms</artifactId>
+	<artifactId>tektutor-order-ms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>customer-ms</name>
+	<name>order-ms</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
