@@ -45,7 +45,7 @@ public class CustomerRestController {
 	@GetMapping("/update-address")
 	public String updateCustomerAddress() {
 				
-			Customer customer = new Customer ( 1, "Jegan", "Pune" );
+			Customer customer = new Customer ( 1, "Jegan", "Austin" );
 		
 			kakfaTemplate.send( TOPIC,  customer );
 		
