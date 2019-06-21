@@ -8,10 +8,14 @@ import com.couchbase.client.java.repository.annotation.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Document
 public class Customer {
@@ -29,6 +33,4 @@ public class Customer {
 		this.name = name;
 		this.shippingAddress = shippingAddress;
 	}	
-	
-	
 }

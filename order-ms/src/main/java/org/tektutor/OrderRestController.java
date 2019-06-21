@@ -30,8 +30,8 @@ public class OrderRestController {
 	@PostConstruct
 	public void initCustomerRepo() {
 		
-		orderRepository.saveAll ( Stream.of( new Order( 1, 1, "Markers", "Pune" ),
-												new Order( 2, 1,  "Mobile", "Chennai")
+		orderRepository.saveAll ( Stream.of( new Order( 1, 1,  "Markers",  "Pune" ),
+											 new Order( 2, 1,  "Mobile",   "Chennai")
 		).collect( Collectors.toList()));
 
 	}
@@ -39,8 +39,7 @@ public class OrderRestController {
 	@GetMapping("/orders")
 	public Iterable<Order> getAllOrders( ) {
 		return  orderRepository.findAll();
-	}
-	
+	}	
 	
 	@KafkaListener(topics = TOPIC, groupId = "UPDATE_SHIPPING_ADDRESS")
 	public String listen(Customer customer) {
@@ -50,14 +49,14 @@ public class OrderRestController {
 	    int customerId = customer.getId();
 	    String strQuery = "SELECT * from order where customerId=" + customerId;
 
-	    N1qlQuery query = new N1qlQuery( strQuery );
-	    SimpleN1qlQuery simpleQuery = query.simple( strQuery );
+	    SimpleN1qlQuery simpleQuery = N1qlQuery.simple( strQuery );
 
-	    ArrayList<Order> listOfOrders = orderRepository.findByN1QL( simpleQuery );
+//	    ArrayList<Order> listOfOrders = orderRepository.findByN1QL( simpleQuery );
+	    ArrayList<Order> listOfOrders = orderRepository.findByCustomerId(customerId);
 
 	    for ( Order order : listOfOrders ) {
-		order.setShippingAddress ( customer.getShippingAddress() );
-		orderRepository.save ( order );
+	    	order.setShippingAddress ( customer.getShippingAddress() );
+	    	orderRepository.save ( order );
 	    } 
 
 	    return customer.toString();
