@@ -51,7 +51,6 @@ public class OrderRestController {
 
 	    SimpleN1qlQuery simpleQuery = N1qlQuery.simple( strQuery );
 
-//	    ArrayList<Order> listOfOrders = orderRepository.findByN1QL( simpleQuery );
 	    ArrayList<Order> listOfOrders = orderRepository.findByCustomerId(customerId);
 
 	    for ( Order order : listOfOrders ) {
