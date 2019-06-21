@@ -47,13 +47,14 @@ public class OrderRestController {
 	    System.out.println("Received Customer object ==> " + customer.toString());
 
 	    int customerId = customer.getId();
-	    String strQuery = "SELECT * from order where customerId=" + customerId;
+	    String strQuery = "SELECT * from `order` where customerId=" + customerId;
 
 	    SimpleN1qlQuery simpleQuery = N1qlQuery.simple( strQuery );
 
 	    ArrayList<Order> listOfOrders = orderRepository.findByCustomerId(customerId);
 
 	    for ( Order order : listOfOrders ) {
+		System.out.println ("Updating shipping address ..");
 	    	order.setShippingAddress ( customer.getShippingAddress() );
 	    	orderRepository.save ( order );
 	    } 
