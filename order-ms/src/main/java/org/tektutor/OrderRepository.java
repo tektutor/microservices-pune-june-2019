@@ -11,7 +11,9 @@ import org.springframework.data.couchbase.repository.CouchbaseRepository;
 @ViewIndexed(designDoc="order")
 public interface OrderRepository extends CouchbaseRepository<Order, Integer> {
 
-    @Query("#{#n1ql.selectEntity} where customerId = $1 within #{#n1ql.bucket}")
+    ArrayList<org.tektutor.Order> findAll();
+	
+    ArrayList<org.tektutor.Order> findById(int id);
+	
     ArrayList<org.tektutor.Order> findByCustomerId(int customerId);
-
 }
