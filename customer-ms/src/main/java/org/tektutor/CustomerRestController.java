@@ -1,20 +1,20 @@
 package org.tektutor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import net.bytebuddy.description.modifier.MethodArguments;
 
 @RestController
 public class CustomerRestController {
@@ -35,13 +35,21 @@ public class CustomerRestController {
 		).collect( Collectors.toList()));
 
 	}
-
 	
+	@CrossOrigin
+	@RequestMapping(path="/newcustomer", consumes="application/json", method=RequestMethod.POST )
+	public void createNewCustomer(@RequestBody Customer customer) {
+		System.out.println(customer.toString());
+		customerRepository.save(customer);
+	}
+
+	@CrossOrigin
 	@GetMapping("/customers")
 	public Iterable<Customer> getAllCustomers( ) {
 		return  customerRepository.findAll();
 	}
 	
+	@CrossOrigin
 	@GetMapping("/update-address")
 	public String updateCustomerAddress() {
 				
@@ -49,7 +57,7 @@ public class CustomerRestController {
 		
 			kakfaTemplate.send( TOPIC,  customer );
 		
-			return "Customer updated successfully !";
+			return "Customer shipping updated addressed is posted to Kakfa successfully !";
 	}
 	
 }

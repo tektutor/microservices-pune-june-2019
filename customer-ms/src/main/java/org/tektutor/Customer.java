@@ -14,9 +14,6 @@ import lombok.Setter;
 
 
 @Data
-@Getter
-@Setter
-@NoArgsConstructor
 @Document
 public class Customer {
 	@Id
@@ -28,9 +25,37 @@ public class Customer {
 	@Field
 	private String shippingAddress;
 
+	public Customer() {
+		
+	}
+	
 	public Customer(int id, String name, String shippingAddress) {
 		this.id = id;
 		this.name = name;
 		this.shippingAddress = shippingAddress;
-	}	
+	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public String getShippingAddress() {
+		return this.shippingAddress;
+	}
+	
+	public void setId( int id ) {
+		this.id = id;
+	}
+	
+	public void setName ( String name ) {
+		this.name = name;
+	}
+	
+	public void setShippingAdress( String address ) {
+		this.shippingAddress = address;
+	}
 }

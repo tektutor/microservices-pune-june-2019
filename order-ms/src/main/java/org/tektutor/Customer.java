@@ -8,8 +8,8 @@ import com.couchbase.client.java.repository.annotation.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -34,5 +34,16 @@ public class Customer {
 		this.shippingAddress = shippingAddress;
 	}	
 	
+	public int getId() {
+		return id;
+	}
 	
+	public String getName() {
+		return name;
+	}
+	
+	public String getShippingAddress() {
+		return shippingAddress;
+	}
+
 }
